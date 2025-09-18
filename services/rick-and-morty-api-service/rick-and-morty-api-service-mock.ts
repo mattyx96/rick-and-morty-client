@@ -38,7 +38,7 @@ const fetchCharacters = async (
           url: "http://localhost:8080",
         },
         image: "",
-        episode: [""],
+        episode: [1],
       },
       {
         id: 2,
@@ -58,7 +58,7 @@ const fetchCharacters = async (
           url: "http://localhost:8080",
         },
         image: "",
-        episode: [""],
+        episode: [1],
       },
       {
         id: 3,
@@ -78,7 +78,7 @@ const fetchCharacters = async (
           url: "http://localhost:8080",
         },
         image: "",
-        episode: [""],
+        episode: [1],
       },
     ],
     info: {
@@ -110,7 +110,7 @@ const fetchCharacter = async (id: number): Promise<Character> => {
       url: "http://localhost:8080",
     },
     image: "",
-    episode: [""],
+    episode: [1],
   };
 };
 
@@ -226,11 +226,111 @@ const fetchLocation = async (id: number): Promise<Location> => {
   };
 };
 
+const fetchCharactersByIds = async (ids: number[]): Promise<Character[]> => {
+  await sleep(2000);
+  return [
+    {
+      id: 1,
+      name: "name",
+      url: "url",
+      created: "created",
+      status: "Dead",
+      species: "species",
+      type: "Alien",
+      gender: "Genderless",
+      origin: {
+        name: "test",
+        url: "http://localhost:8080",
+      },
+      location: {
+        name: "test",
+        url: "http://localhost:8080",
+      },
+      image: "",
+      episode: [1],
+    },
+    {
+      id: 2,
+      name: "name 2",
+      url: "url",
+      created: "created",
+      status: "Dead",
+      species: "species",
+      type: "Alien",
+      gender: "Genderless",
+      origin: {
+        name: "test",
+        url: "http://localhost:8080",
+      },
+      location: {
+        name: "test",
+        url: "http://localhost:8080",
+      },
+      image: "",
+      episode: [1],
+    },
+    {
+      id: 3,
+      name: "name 3",
+      url: "url",
+      created: "created",
+      status: "Dead",
+      species: "species",
+      type: "Alien",
+      gender: "Genderless",
+      origin: {
+        name: "test",
+        url: "http://localhost:8080",
+      },
+      location: {
+        name: "test",
+        url: "http://localhost:8080",
+      },
+      image: "",
+      episode: [1],
+    },
+  ];
+};
+
+const fetchEpisodesByIds = async (ids: number[]): Promise<Episode[]> => {
+  await sleep(2000);
+  return [
+    {
+      id: 1,
+      name: "Episodio 1",
+      url: "url 1",
+      created: "created",
+      episode: "S0E01",
+      air_date: "12/12/21",
+      characters: [1, 2],
+    },
+    {
+      id: 2,
+      name: "Episodio 2",
+      url: "url 2",
+      created: "created",
+      episode: "S0E02",
+      air_date: "12/12/21",
+      characters: [1],
+    },
+    {
+      id: 3,
+      name: "Episodio 3",
+      url: "url 3",
+      created: "created",
+      episode: "S1E01",
+      air_date: "12/32/21",
+      characters: [1],
+    },
+  ];
+};
+
 export {
   fetchCharacters,
   fetchEpisodes,
   fetchLocations,
   fetchEpisode,
   fetchLocation,
-  fetchCharacter,
+  fetchCharactersByIds,
+  fetchEpisodesByIds,
 };
