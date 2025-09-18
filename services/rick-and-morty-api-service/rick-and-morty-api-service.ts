@@ -1,4 +1,5 @@
 import {
+  type Character as CharacterDto,
   type Episode as EpisodeDto,
   getCharacter,
   getCharacters,
@@ -26,17 +27,30 @@ const fetchCharacters = async (
 ): Response<Character[]> => {
   try {
     const response = await getCharacters(filter);
-    return response.data;
+    return {
+      ...response.data,
+      results: response.data.results?.map(mapCharacter),
+    };
   } catch (e) {
     console.error(e);
     throw e;
   }
 };
 
-const fetchCharacter = async (id: number): Promise<Character> => {
+const fetchCharactersByIds = async (ids: number[]): Promise<Character[]> => {
   try {
-    const response = await getCharacter(id);
-    return response.data;
+    const response = await getCharacter(ids);
+    return response.data.map(mapCharacter);
+  } catch (e) {
+    console.error(e);
+    throw e;
+  }
+};
+
+const fetchEpisodesByIds = async (ids: number[]): Promise<Episode[]> => {
+  try {
+    const response = await getEpisode(ids);
+    return response.data?.map(mapEpisode) || [];
   } catch (e) {
     console.error(e);
     throw e;
@@ -102,6 +116,17 @@ const mapEpisode = (episode: EpisodeDto): Episode => {
   };
 };
 
+const mapCharacter = (character: CharacterDto): Character => {
+  return {
+    ...character,
+    episode: character.episode
+      .map((character) =>
+        Number(character.split("/")[character.split("/").length - 1]),
+      )
+      .filter((id) => !Number.isNaN(id)),
+  };
+};
+
 const mapLocation = (location: LocationDto): Location => {
   return {
     ...location,
@@ -119,5 +144,6 @@ export {
   fetchLocations,
   fetchEpisode,
   fetchLocation,
-  fetchCharacter,
+  fetchCharactersByIds,
+  fetchEpisodesByIds,
 };

@@ -31,7 +31,7 @@ export interface Character extends ResourceBase {
   origin: CharacterLocation;
   location: CharacterLocation;
   image: string;
-  episode: string[];
+  episode: number[];
 }
 export interface Location extends ResourceBase {
   type: string;

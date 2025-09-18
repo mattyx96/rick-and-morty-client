@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Bangers, Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import Footer from "@/components/footer";
 import Header from "@/components/header";
 
 const geistSans = Geist({
@@ -38,10 +39,14 @@ export default function RootLayout({
           `${geistSans.variable} ${geistMono.variable} ${bangers.variable} antialiased`
         }
       >
-        <Header />
-        <div className="container mx-auto flex flex-col grow p-2 md:p-0">
-          {children}
+        {/*above the fold*/}
+        <div className="flex min-h-screen flex-col grow">
+          <Header />
+          <div className="container mx-auto flex flex-col grow p-2 md:p-0">
+            {children}
+          </div>
         </div>
+        <Footer />
       </body>
     </html>
   );

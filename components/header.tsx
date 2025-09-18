@@ -25,7 +25,9 @@ export default function Header() {
   return (
     <header className="w-full container mx-auto flex items-center justify-between px-4 py-3 md:px-0">
       {/* Logo */}
-      <Logo />
+      <Link href="/characters">
+        <Logo className="hover:scale-110 active:scale-110 transition-transform duration-75" />
+      </Link>
 
       {/* Desktop nav */}
       <nav className="hidden gap-6 md:flex">
@@ -33,7 +35,7 @@ export default function Header() {
           <Link
             key={link.href}
             href={link.href}
-            className="text-sm font-medium text-foreground/80 transition-colors hover:text-foreground"
+            className="text-md font-medium text-accent transition-colors hover:underline active:underline font-bangers"
           >
             {link.label}
           </Link>
@@ -59,14 +61,14 @@ export default function Header() {
           aria-describedby="menu-content"
         >
           <SheetHeader>
-            <SheetTitle>Menu</SheetTitle>
+            <SheetTitle className="hidden">Menu</SheetTitle>
           </SheetHeader>
-          <div className="mt-4 flex flex-col space-y-4">
+          <div className="mt-4 flex flex-col space-y-4 pt-5 px-5">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className="text-lg font-medium text-foreground hover:text-primary"
+                className="text-md font-medium text-accent transition-colors hover:underline font-bangers"
                 onClick={() => setOpen(false)}
               >
                 {link.label}

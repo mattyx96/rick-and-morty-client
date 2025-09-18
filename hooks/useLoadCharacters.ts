@@ -1,24 +1,21 @@
 import { useEffect, useState } from "react";
-import type { Episode } from "@/models";
-import { fetchEpisodesByIds } from "@/services/rick-and-morty-api-service";
+import type { Character } from "@/models";
+import { fetchCharactersByIds } from "@/services/rick-and-morty-api-service";
 
-export const useLoadEpisodes = (ids: number[] = []) => {
-  const [data, setData] = useState<Episode[]>([]);
+export const useLoadCharacters = (ids: number[] = []) => {
+  const [data, setData] = useState<Character[]>([]);
   const [loading, setLoading] = useState(true);
   const [errorMessage, setErrorMessage] = useState<string | undefined>();
 
   const fetchData = async () => {
     try {
       setLoading(true);
-      if (Array.isArray(ids)) {
-        return;
+      const characters = await fetchCharactersByIds(ids);
+      if (Array.isArray(characters)) {
+        setData(characters || []);
       }
-      const episodes = await fetchEpisodesByIds(ids);
-      if (Array.isArray(episodes)) {
-        setData(episodes || []);
-      }
-      if (!Array.isArray(episodes) && Object.keys(episodes).length > 0) {
-        setData([episodes]);
+      if (!Array.isArray(characters) && Object.keys(characters).length > 0) {
+        setData([characters]);
       }
     } catch (error) {
       console.error(error);

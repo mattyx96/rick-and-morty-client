@@ -40,7 +40,7 @@ export default function LocationsPage() {
   return (
     <div className="flex flex-col grow gap-3 mt-10 justify-between pb-10">
       <div className="flex flex-col gap-5">
-        <h1 className="text-3xl text-center md:text-left font-bold text-accent font-bangers">
+        <h1 className="text-3xl text-center md:text-left font-bold text-primary font-bangers">
           Locations
         </h1>
 

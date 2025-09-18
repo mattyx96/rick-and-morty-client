@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { useState } from "react";
+import { EpisodesGrid } from "@/components/episodes-grid";
 import { LoadingSpinner } from "@/components/loading-spinner";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
@@ -98,16 +99,10 @@ export function CharacterCard(props: Readonly<{ character: Character }>) {
             <p className="text-pretty">{location.name}</p>
           </div>
 
-          {/* Episodi */}
           <div className="space-y-1">
             <span className="font-medium text-muted-foreground">Episodes</span>
-            <ul className="list-disc list-inside space-y-0.5">
-              {episode.map((epUrl) => (
-                <li key={epUrl} className="break-all text-pretty">
-                  {epUrl}
-                </li>
-              ))}
-            </ul>
+
+            <EpisodesGrid ids={episode} />
           </div>
         </div>
       </CardContent>

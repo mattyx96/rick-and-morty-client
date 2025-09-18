@@ -39,6 +39,11 @@ export const usePagination = (
     setCurrentPage(nextPage);
   };
 
+  const fetchPage = async (page: number) => {
+    onPageChange(page);
+    setCurrentPage(page);
+  };
+
   return {
     pagination,
     setPagination,
@@ -47,5 +52,6 @@ export const usePagination = (
     showPagination,
     fetchPreviousPage,
     fetchNextPage,
+    fetchPage,
   };
 };

@@ -9,30 +9,33 @@ const SHOW_PAGINATION_CAP = 10;
 export const useEpisodesPage = (defaultData: Episode[] = []) => {
   const [data, setData] = useState<Episode[]>(defaultData);
 
+  const [errorMessage, setErrorMessage] = useState<string | undefined>();
+  const [loading, setLoading] = useState(true);
+  const [loadingMore, setLoadingMore] = useState(false);
+
   const { pagination, setPagination, ...paginationRest } = usePagination(
-    (page) => fetchData({ page }),
+    (page) => {
+      setLoadingMore(true);
+      fetchData({ page }).finally(() => setLoadingMore(false));
+    },
     SHOW_PAGINATION_CAP,
   );
 
-  const [errorMessage, setErrorMessage] = useState<string | undefined>();
-  const [loading, setLoading] = useState(true);
-
   const fetchData = async (filters?: EpisodeFilter) => {
-    setLoading(true);
     try {
       const result = await fetchEpisodes(filters);
-      setData(result.results || defaultData);
+      const newData = new Set([...data, ...(result?.results || [])]);
+      setData([...newData]);
       setPagination(result.info);
     } catch (error) {
       console.error(error);
       setErrorMessage("Something went wrong");
-    } finally {
-      setLoading(false);
     }
   };
 
   useEffect(() => {
-    fetchData().then(null);
+    setLoading(true);
+    fetchData().finally(() => setLoading(false));
   }, []);
 
   return {
@@ -43,6 +46,7 @@ export const useEpisodesPage = (defaultData: Episode[] = []) => {
       ...paginationRest,
     },
     loading,
+    loadingMore,
     errorMessage,
   };
 };
