@@ -26,11 +26,11 @@ export function LocationCard({
   location,
   onClick,
 }: Readonly<LocationCardProps>) {
-  const { name, type, dimension, residents } = location;
+  const { name, type, residents } = location;
 
   return (
     <Card
-      className="w-full p-4 overflow-hidden cursor-pointer animate-in fade-in duration-200 hover:ring-2 hover:ring-blue-200"
+      className="w-full p-4 overflow-hidden cursor-pointer animate-in fade-in duration-200 hover:ring-2 hover:ring-accent"
       onClick={onClick}
     >
       <CardContent className="p-1 flex items-center gap-3">
@@ -41,9 +41,6 @@ export function LocationCard({
               {type}
             </Badge>
           </div>
-          {/*<span className="text-sm text-gray-500 truncate w-full">*/}
-          {/*  {dimension}*/}
-          {/*</span>*/}
           <div className="flex items-center gap-1 text-xs text-gray-400">
             <Users className="w-3 h-3" />
             <span>{residents.length} residents</span>

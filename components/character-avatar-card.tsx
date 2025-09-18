@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { LoadingSpinner } from "@/components/loading-spinner";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
@@ -38,8 +39,8 @@ export function CharacterAvatarCard({
           <div className="relative flex items-center">
             <Avatar className="w-14 h-14">
               <AvatarImage src={image} alt={name} />
-              <AvatarFallback className="text-2xl">
-                <Skeleton className="w-14 h-14 rounded-full" />
+              <AvatarFallback>
+                <LoadingSpinner className="size-14" />
               </AvatarFallback>
             </Avatar>
             <Badge

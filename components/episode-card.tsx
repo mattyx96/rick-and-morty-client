@@ -6,7 +6,7 @@ import type { Episode } from "@/models";
 
 export function EpisodeCard({ episode }: Readonly<{ episode: Episode }>) {
   return (
-    <Card className="w-full p-4 rounded-xl overflow-hidden cursor-pointer animate-in fade-in duration-200 hover:ring-2 hover:ring-green-200">
+    <Card className="w-full p-4 rounded-xl overflow-hidden cursor-pointer animate-in fade-in duration-200 hover:ring-2 hover:ring-accent">
       <CardContent className="flex flex-col items-start gap-1 text-start whitespace-nowrap overflow-hidden text-ellipsis">
         <h3 className="font-semibold text-md">{episode.episode}</h3>
         <p className="text-sm">

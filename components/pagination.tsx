@@ -37,7 +37,7 @@ export const PaginationComponent = ({
 
   return (
     <Pagination className="flex items-center justify-start text-gray-500 text-sm">
-      <PaginationContent>
+      <PaginationContent className="flex items-center gap-5">
         <PaginationItem>
           <PaginationPrevious
             onClick={handlePrevious}
@@ -50,11 +50,11 @@ export const PaginationComponent = ({
           ></PaginationPrevious>
         </PaginationItem>
 
-        <span>
+        <div>
           <span>{currentPage}</span>
           <span>{" of "}</span>
           <span>{totalPages}</span>
-        </span>
+        </div>
 
         <PaginationItem>
           <PaginationNext

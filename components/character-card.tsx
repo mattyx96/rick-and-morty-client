@@ -1,4 +1,6 @@
 import Image from "next/image";
+import { useState } from "react";
+import { LoadingSpinner } from "@/components/loading-spinner";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
@@ -6,7 +8,6 @@ import type { Character } from "@/models";
 
 export function CharacterCard(props: Readonly<{ character: Character }>) {
   const {
-    id,
     name,
     image,
     status,
@@ -16,9 +17,9 @@ export function CharacterCard(props: Readonly<{ character: Character }>) {
     origin,
     location,
     episode,
-    url,
-    created,
   } = props.character;
+
+  const [imageLoaded, setImageLoaded] = useState(false);
 
   const getStatusVariant = (
     status: string,
@@ -38,13 +39,15 @@ export function CharacterCard(props: Readonly<{ character: Character }>) {
       <CardHeader className="p-0">
         <div className="relative h-full overflow-hidden">
           <Image
-            src={image || "/placeholder.svg"}
+            src={image}
             alt={name}
             height={460}
             width={460}
-            className="object-cover"
+            className={`object-cover ${!imageLoaded && "h-0"}`}
+            onLoadingComplete={() => setImageLoaded(true)}
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+
+          {!imageLoaded && <LoadingSpinner />}
 
           <Badge
             variant={getStatusVariant(status)}
