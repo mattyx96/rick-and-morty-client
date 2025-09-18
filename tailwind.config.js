@@ -10,7 +10,10 @@ module.exports = {
       fontFamily: {
         sans: ["Inter", "sans-serif"],
         mono: ["Space Mono", "monospace"],
-        bangers: ["var(--font-bangers)"],
+      },
+      colors: {
+        primary: "#63B2C7",
+        secondary: "#f0e14a",
       },
     },
   },

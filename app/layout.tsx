@@ -15,6 +15,7 @@ const geistMono = Geist_Mono({
 
 const bangers = Bangers({
   weight: "400",
+  subsets: ["latin"],
   variable: "--font-bangers",
 });
 
