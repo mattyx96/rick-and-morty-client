@@ -1,3 +1,5 @@
+"use client";
+
 import { useState } from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
@@ -29,7 +31,7 @@ export function CharacterAvatarCard({
   return (
     <>
       <Card
-        className="w-full p-4 overflow-hidden cursor-pointer animate-in fade-in duration-200 hover:ring-2 hover:ring-green-200"
+        className="w-full p-4 overflow-hidden cursor-pointer animate-in fade-in duration-200 hover:ring-2 hover:ring-accent"
         onClick={() => setIsDialogOpen(true)}
       >
         <CardContent className="p-1 flex items-center text-center gap-3">
@@ -65,8 +67,8 @@ export function CharacterAvatarCard({
 
 export function CharacterAvatarCardSkeleton() {
   return (
-    <Card className="w-full p-4 overflow-hidden animate-in duration-300">
-      <CardContent className="p-1 flex items-center text-center animate-pulse gap-3">
+    <Card className="relative background-portal-spinner w-full p-4 overflow-hidden animate-in duration-300">
+      <CardContent className="opacity-0 p-1 flex items-center text-center animate-pulse gap-3">
         <div className="relative flex items-center">
           <Skeleton className="w-14 h-14 rounded-full" />
           <Skeleton className="absolute -bottom-1 -right-1 w-5 h-5 rounded-full" />

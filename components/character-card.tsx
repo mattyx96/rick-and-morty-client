@@ -5,7 +5,20 @@ import { Separator } from "@/components/ui/separator";
 import type { Character } from "@/models";
 
 export function CharacterCard(props: Readonly<{ character: Character }>) {
-  const { name, image, status, species, origin, location } = props.character;
+  const {
+    id,
+    name,
+    image,
+    status,
+    species,
+    type,
+    gender,
+    origin,
+    location,
+    episode,
+    url,
+    created,
+  } = props.character;
 
   const getStatusVariant = (
     status: string,
@@ -44,6 +57,7 @@ export function CharacterCard(props: Readonly<{ character: Character }>) {
       </CardHeader>
 
       <CardContent className="p-6 space-y-4">
+        {/* Nome e specie */}
         <div className="space-y-2">
           <h2 className="text-2xl font-bold text-balance leading-tight">
             {name}
@@ -55,7 +69,20 @@ export function CharacterCard(props: Readonly<{ character: Character }>) {
 
         <Separator />
 
+        {/* Info principali */}
         <div className="space-y-3 text-sm">
+          {type && (
+            <div className="space-y-1">
+              <span className="font-medium text-muted-foreground">Type</span>
+              <p className="text-pretty">{type}</p>
+            </div>
+          )}
+
+          <div className="space-y-1">
+            <span className="font-medium text-muted-foreground">Gender</span>
+            <p className="text-pretty">{gender}</p>
+          </div>
+
           <div className="space-y-1">
             <span className="font-medium text-muted-foreground">Origin</span>
             <p className="text-pretty">{origin.name}</p>
@@ -68,12 +95,17 @@ export function CharacterCard(props: Readonly<{ character: Character }>) {
             <p className="text-pretty">{location.name}</p>
           </div>
 
-          {/*{episode_count > 0 && (*/}
-          {/*    <div className="flex items-center justify-between">*/}
-          {/*        <span className="font-medium text-muted-foreground">Episodes</span>*/}
-          {/*        <Badge variant="secondary">{episode_count}</Badge>*/}
-          {/*    </div>*/}
-          {/*)}*/}
+          {/* Episodi */}
+          <div className="space-y-1">
+            <span className="font-medium text-muted-foreground">Episodes</span>
+            <ul className="list-disc list-inside space-y-0.5">
+              {episode.map((epUrl) => (
+                <li key={epUrl} className="break-all text-pretty">
+                  {epUrl}
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       </CardContent>
     </Card>
