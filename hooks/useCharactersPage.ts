@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useMemo, useState } from "react";
-import { fetchCharacters } from "@/lib/rickAndMortyApiService";
 import type { Character, CharacterFilter, PaginatedResponse } from "@/models";
+import { fetchCharacters } from "@/services/rick-and-morty-api-service";
 
 const SHOW_PAGINATION_CAP = 20;
 
