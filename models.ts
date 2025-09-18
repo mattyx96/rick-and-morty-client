@@ -36,12 +36,12 @@ export interface Character extends ResourceBase {
 export interface Location extends ResourceBase {
   type: string;
   dimension: string;
-  residents: string[];
+  residents: number[];
 }
 export interface Episode extends ResourceBase {
   air_date: string;
   episode: string;
-  characters: string[];
+  characters: number[];
 }
 
 export interface PaginatedResponse<T extends Array<unknown>> {
