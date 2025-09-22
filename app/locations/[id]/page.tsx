@@ -1,14 +1,13 @@
-import { CharactersGrid } from "@/components/characters-grid";
-import { fetchLocation } from "@/services/rick-and-morty-api-service";
+import {CharactersGrid} from "@/components/characters-grid";
+import {fetchLocation} from "@/services/rick-and-morty-api-service";
 
 interface LocationPageProps {
-  params: { id: string };
+    params: Promise<{ id: string }>;
 }
 
-export default async function LocationDetailPage({
-  params,
-}: LocationPageProps) {
-  const location = await fetchLocation(Number(params.id));
+export default async function EpisodeDetailPage({params}: LocationPageProps) {
+    const {id} = await params;
+    const location = await fetchLocation(Number(id));
 
   return (
     <main className="container mx-auto px-4 py-8">

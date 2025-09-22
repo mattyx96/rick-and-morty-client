@@ -2,11 +2,12 @@ import { CharactersGrid } from "@/components/characters-grid";
 import { fetchEpisode } from "@/services/rick-and-morty-api-service";
 
 interface EpisodePageProps {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }
 
 export default async function EpisodeDetailPage({ params }: EpisodePageProps) {
-  const episode = await fetchEpisode(Number(params.id));
+  const { id } = await params;
+  const episode = await fetchEpisode(Number(id));
 
   return (
     <main className="container mx-auto flex flex-col grow px-4 py-8">
