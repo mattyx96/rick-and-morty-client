@@ -1,4 +1,6 @@
-# 🧩 Rick & Morty Dharma Assignment
+# 🧩 Rick & Morty Client
+**This is a responsive Rick & Morty client that displays characters, episodes, and locations, all styled to capture the distinctive look and feel of the show.**
+
 
 ## 🚀 Tech Stack
 
